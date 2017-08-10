@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="fsColor_titleBackground">#303F9F</color>
+    <color name="fsColor_dialogBackground">#F0F0F0</color>
+    <color name="fsColor_dialogTitleTextColor">#F6F6F6</color>
+</resources>

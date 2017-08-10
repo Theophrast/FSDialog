@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fsdialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/fsColor_titleBackground"
+        android:elevation="8dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_fsdialog_discard"
+                style="@style/Widget.AppCompat.ButtonBar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:paddingEnd="16dp"
+                android:paddingStart="12dp"
+                android:src="@drawable/ic_close_white_24dp"
+                android:tint="@color/fsColor_dialogTitleTextColor" />
+
+            <TextView
+                android:id="@+id/tv_fsdialog_title"
+                style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Dialog Title"
+                android:textColor="@color/fsColor_dialogTitleTextColor"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/tv_fsdialog_confirm"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Save"
+            android:textColor="@color/fsColor_dialogTitleTextColor"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/container_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fsColor_dialogBackground">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
+
+    </ScrollView>
+</LinearLayout>
