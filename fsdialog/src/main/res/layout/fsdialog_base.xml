@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:background="@color/fsColor_titleBackground"
-        android:elevation="8dp"
+        android:elevation="2dp"
         android:gravity="end"
         android:orientation="horizontal">
 

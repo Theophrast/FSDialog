@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -87,7 +88,7 @@ public class FSDialog {
         ImageButton ib_discard = (ImageButton) baseView.findViewById(R.id.ib_fsdialog_discard);
         TextView tv_title = (TextView) baseView.findViewById(R.id.tv_fsdialog_title);
         Button bt_confirm = (Button) baseView.findViewById(R.id.tv_fsdialog_confirm);
-        RelativeLayout titlebar = (RelativeLayout) baseView.findViewById(R.id.fsdialog_title);
+        LinearLayout titlebar = (LinearLayout) baseView.findViewById(R.id.fsdialog_title);
         ScrollView scrollview = (ScrollView) baseView.findViewById(R.id.container_scrollview);
 
         //setup colors
