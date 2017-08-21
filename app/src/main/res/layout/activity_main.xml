@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:gravity="center"
     tools:context="com.theophrast.fullscreenstyledialog.MainActivity">
 
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/bt_dialog_simple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show Dialog !"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"  />
+        android:text="Show Simple Dialog !"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/bt_dialog_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show dialog with input !"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
