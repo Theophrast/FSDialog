@@ -40,23 +40,23 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundColorRes(android.R.color.white)
                 .setTitle("")
                 .setConfirmString("Ok")
-                .setConfirmListener(new FSDialogButtonClickListener() {
-                    @Override
-                    public void OnButtonClick() {
-                        Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setDiscardListener(new FSDialogButtonClickListener() {
-                    @Override
-                    public void OnButtonClick() {
-                        Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
-                    }
-                })
                 .setAutoDismiss(true)
                 .setLayoutResource(R.layout.dialog_content);
 
         FSDialog dialog = builder.build();
         dialog.show();
+        dialog.setConfirmListener(new FSDialogButtonClickListener() {
+            @Override
+            public void OnButtonClick() {
+                Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        dialog.setDiscardListener(new FSDialogButtonClickListener() {
+            @Override
+            public void OnButtonClick() {
+                Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void showInputDialog() {
@@ -66,21 +66,22 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundColorRes(android.R.color.white)
                 .setTitle("Text input")
                 .setConfirmString("Save")
-                .setConfirmListener(new FSDialogButtonClickListener() {
-                    @Override
-                    public void OnButtonClick() {
-                        Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .setDiscardListener(new FSDialogButtonClickListener() {
-                    @Override
-                    public void OnButtonClick() {
-                        Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
-                    }
-                })
                 .setLayoutResource(R.layout.dialog_content_input);
 
         FSDialog dialog = builder.build();
         dialog.show();
+
+        dialog.setConfirmListener(new FSDialogButtonClickListener() {
+            @Override
+            public void OnButtonClick() {
+                Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
+            }
+        });
+        dialog.setDiscardListener(new FSDialogButtonClickListener() {
+            @Override
+            public void OnButtonClick() {
+                Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

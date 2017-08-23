@@ -6,7 +6,7 @@
 Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specified in Google Material Design.
 
 ## Requirements
-The Library requires **Android SDK version 26 (Android 8.0)**.
+The Library requires **Android SDK version 25**.
 
 
 ![demo1](https://github.com/Theophrast/FSDialog/blob/master/screenshots/demo1.png)
@@ -24,18 +24,6 @@ The Library requires **Android SDK version 26 (Android 8.0)**.
             .setBackgroundColorRes(android.R.color.white)
             .setTitle("Title")
             .setConfirmString("Save")
-            .setConfirmListener(new FSDialogButtonClickListener() {
-                @Override
-                public void OnButtonClick() {
-                    // Replace your confirm action
-                }
-            })
-            .setDiscardListener(new FSDialogButtonClickListener() {
-                @Override
-                public void OnButtonClick() {
-                    // Replace your discard action
-                }
-            })
             .setLayoutResource(R.layout.my_dialog_content.xml);
 
     FSDialog dialog = builder.build();
@@ -85,8 +73,29 @@ Automatically dismiss the dialog on discard or confirm event (default true):
 	.setAutoDismiss(true);
 ```
 
+Set listeners for discard and confirm button:
+```java
+    FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this);
+    FSDialog dialog = builder.build();
+    dialog.show();
+        
+    dialog.setConfirmListener(new FSDialogButtonClickListener() {
+        @Override
+        public void OnButtonClick() {
+            // Replace your confirm action
+        }
+    });
+        
+    dialog.setDiscardListener(new FSDialogButtonClickListener() {
+        @Override
+        public void OnButtonClick() {
+            // Replace your discard action
+        }
+    });
+```
+
 ## Gradle dependency
-Add it in your **root build.gradle** at the end of repositories:
+Add it in your **root build.gradle** at the end of the repositories:
 
 ```groovy
 allprojects {
@@ -96,11 +105,11 @@ allprojects {
 	}
 }
 ```
-In your project level **build.gradle**:
+In your project level's **build.gradle**:
 ```groovy
 dependencies {
 	...
-	compile 'com.github.Theophrast:FSDialog:1.0'
+	compile 'com.github.Theophrast:FSDialog:1.1'
 }
 ```
 

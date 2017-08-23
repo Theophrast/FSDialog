@@ -51,10 +51,17 @@ public class FSDialog {
         this.title = builder.title;
         this.confirmString = builder.confirmString;
         this.layoutResource = builder.layoutResource;
-        this.discardListener = builder.discardListener;
-        this.confirmListener = builder.confirmListener;
         this.autoDismiss = builder.autoDismiss;
     }
+
+    public void setDiscardListener(FSDialogButtonClickListener discardListener) {
+        this.discardListener = discardListener;
+    }
+
+    public void setConfirmListener(FSDialogButtonClickListener confirmListener) {
+        this.confirmListener = confirmListener;
+    }
+
 
     public void show() {
         LayoutInflater inflater = (LayoutInflater) mContext
@@ -132,14 +139,12 @@ public class FSDialog {
         private int titleBackgroundColor = Color.parseColor("#303F9F");
 
         private String title = "Title";
-        private String confirmString = "Save";
+        private String confirmString = "Ok";
 
         private int layoutResource = R.layout.fsdialog_content_base;
 
         private boolean autoDismiss = true;
 
-        private FSDialogButtonClickListener discardListener = null;
-        private FSDialogButtonClickListener confirmListener = null;
 
         public FsDialogBuilder(Context mContext) {
             this.mContext = mContext;
@@ -195,15 +200,6 @@ public class FSDialog {
             return this;
         }
 
-        public FsDialogBuilder setDiscardListener(FSDialogButtonClickListener discardListener) {
-            this.discardListener = discardListener;
-            return this;
-        }
-
-        public FsDialogBuilder setConfirmListener(FSDialogButtonClickListener confirmListener) {
-            this.confirmListener = confirmListener;
-            return this;
-        }
 
         public FSDialog build() {
             return new FSDialog(this);
