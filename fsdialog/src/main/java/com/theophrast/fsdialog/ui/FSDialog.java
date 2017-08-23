@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.theophrast.fsdialog.R;
@@ -26,7 +24,8 @@ import com.theophrast.fsdialog.callbacks.FSDialogButtonClickListener;
 public class FSDialog {
     private Context mContext;
 
-    boolean autoDismiss;
+    private boolean autoDismiss;
+    private boolean contentScrollable;
 
     private int titleStringColor;
     private int backgroundColor;
@@ -52,6 +51,7 @@ public class FSDialog {
         this.confirmString = builder.confirmString;
         this.layoutResource = builder.layoutResource;
         this.autoDismiss = builder.autoDismiss;
+        this.contentScrollable=builder.contentScrollable;
     }
 
     public void setDiscardListener(FSDialogButtonClickListener discardListener) {
@@ -66,8 +66,12 @@ public class FSDialog {
     public void show() {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View thDialogBase = inflater.inflate(com.theophrast.fsdialog.R.layout.fsdialog_base, null);
-
+        View thDialogBase;
+        if(contentScrollable) {
+            thDialogBase = inflater.inflate(com.theophrast.fsdialog.R.layout.fsdialog_base_scrollable, null);
+        }else{
+            thDialogBase = inflater.inflate(com.theophrast.fsdialog.R.layout.fsdialog_base, null);
+        }
         ViewGroup container = (ViewGroup) thDialogBase.findViewById(R.id.container);
         contentView = inflater.inflate(layoutResource, container);
 
@@ -96,7 +100,7 @@ public class FSDialog {
         TextView tv_title = (TextView) baseView.findViewById(R.id.tv_fsdialog_title);
         Button bt_confirm = (Button) baseView.findViewById(R.id.tv_fsdialog_confirm);
         LinearLayout titlebar = (LinearLayout) baseView.findViewById(R.id.fsdialog_title);
-        ScrollView scrollview = (ScrollView) baseView.findViewById(R.id.container_scrollview);
+        LinearLayout rootView = (LinearLayout) baseView.findViewById(R.id.linlay_fsdialog_root);
 
         //setup colors
         ib_discard.setColorFilter(titleStringColor, android.graphics.PorterDuff.Mode.MULTIPLY);
@@ -104,7 +108,7 @@ public class FSDialog {
         bt_confirm.setTextColor(titleStringColor);
 
         titlebar.setBackgroundColor(titleBackgroundColor);
-        scrollview.setBackgroundColor(backgroundColor);
+        rootView.setBackgroundColor(backgroundColor);
 
         //setup the string values
         tv_title.setText(title);
@@ -144,6 +148,7 @@ public class FSDialog {
         private int layoutResource = R.layout.fsdialog_content_base;
 
         private boolean autoDismiss = true;
+        private boolean contentScrollable=true;
 
 
         public FsDialogBuilder(Context mContext) {
@@ -152,6 +157,11 @@ public class FSDialog {
 
         public FsDialogBuilder setAutoDismiss(boolean autoDismiss) {
             this.autoDismiss = autoDismiss;
+            return this;
+        }
+
+        public FsDialogBuilder setContentScrollable(boolean contentScrollable) {
+            this.contentScrollable = contentScrollable;
             return this;
         }
 

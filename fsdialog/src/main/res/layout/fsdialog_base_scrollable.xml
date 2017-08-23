@@ -3,6 +3,7 @@
     android:id="@+id/linlay_fsdialog_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fsColor_dialogBackground"
     android:orientation="vertical">
 
     <LinearLayout
@@ -55,9 +56,15 @@
 
 
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/container"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></FrameLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></FrameLayout>
+
+    </ScrollView>
 </LinearLayout>
