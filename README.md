@@ -2,7 +2,7 @@
 # FSDialog (Fullscreen Styled Dialog)
 [![](https://jitpack.io/v/Theophrast/FSDialog.svg)](https://jitpack.io/#Theophrast/FSDialog)
 
-##Description
+## Description
 Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specified in Google Material Design.
 
 ## Requirements
@@ -75,7 +75,7 @@ Automatically dismiss the dialog on discard or confirm event (default true):
 
 Set listeners for discard and confirm button:
 ```java
-    FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this);
+ FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this);
     FSDialog dialog = builder.build();
     dialog.show();
         
