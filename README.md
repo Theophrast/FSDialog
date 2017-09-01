@@ -11,8 +11,9 @@ Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specifie
 The Library requires **Android SDK version 25**.
 
 
-![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/demo1.png)
-![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/demo2.png)
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_01.png)
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_03.png)
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_02.png)
 
 ----------
 
@@ -96,14 +97,14 @@ Set listeners for discard and confirm button:
  FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this);
     FSDialog dialog = builder.build();
     dialog.show();
-        
+
     dialog.setConfirmListener(new FSDialogButtonClickListener() {
         @Override
         public void OnButtonClick() {
             // Replace your confirm action
         }
     });
-        
+
     dialog.setDiscardListener(new FSDialogButtonClickListener() {
         @Override
         public void OnButtonClick() {
@@ -111,6 +112,13 @@ Set listeners for discard and confirm button:
         }
     });
 ```
+
+Without title or confirm button:
+```java
+	 .setNoConfirmButton()
+     .setNoTitle()
+```
+
 
 ## Gradle dependency
 Add it in your **root build.gradle** at the end of the repositories:
@@ -127,7 +135,7 @@ In your project level's **build.gradle**:
 ```groovy
 dependencies {
 	...
-	compile 'com.github.Theophrast:FSDialog:1.1'
+	compile 'com.github.Theophrast:FSDialog:1.3.0'
 }
 ```
 
