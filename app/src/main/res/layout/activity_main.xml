@@ -4,27 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.theophrast.fullscreenstyledialog.MainActivity">
-
 
 
     <Button
         android:id="@+id/bt_dialog_simple"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Show Simple Dialog !"
         android:layout_gravity="center"
-        android:layout_marginBottom="32dp"/>
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorPrimary"
+        android:text="Show Simple Dialog"
+        android:textColor="@color/color_white" />
 
     <Button
         android:id="@+id/bt_dialog_input"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Show dialog with input !"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
+        android:background="@color/colorPrimary"
+        android:text="Show dialog with input"
+        android:textColor="@color/color_white" />
+
+    <Button
+        android:id="@+id/bt_dialog_noconfirm"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="Without confirm button"
+        android:textColor="@color/color_white" />
 
 </LinearLayout>

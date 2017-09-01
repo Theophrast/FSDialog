@@ -23,11 +23,20 @@ public class MainActivity extends AppCompatActivity {
                 showSimpleDialog();
             }
         });
+
         Button bt_showInputDialog = (Button) findViewById(R.id.bt_dialog_input);
         bt_showInputDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showInputDialog();
+            }
+        });
+
+        Button bt_show_no_confirm_button = (Button) findViewById(R.id.bt_dialog_noconfirm);
+        bt_show_no_confirm_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNoConfirmButtonDialog();
             }
         });
     }
@@ -36,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
     private void showSimpleDialog() {
         FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
                 .setTitleStringColorRes(android.R.color.white)
-                .setTitleBackgroundColorRes(R.color.colorPrimaryDark)
+                .setTitleBackgroundColorRes(R.color.color_red)
                 .setBackgroundColorRes(android.R.color.white)
-                .setTitle("")
+                .setNoTitle()
                 .setConfirmString("Ok")
                 .setAutoDismiss(true)
                 .setLayoutResource(R.layout.dialog_content);
@@ -62,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private void showInputDialog() {
         FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
                 .setTitleStringColorRes(android.R.color.white)
-                .setTitleBackgroundColorRes(R.color.colorPrimaryDark)
+                .setTitleBackgroundColorRes(R.color.color_orange)
                 .setBackgroundColorRes(android.R.color.white)
                 .setTitle("Text input")
                 .setConfirmString("Save")
@@ -83,5 +92,18 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void showNoConfirmButtonDialog() {
+        FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
+                .setTitleStringColorRes(android.R.color.white)
+                .setTitleBackgroundColorRes(R.color.color_green)
+                .setBackgroundColorRes(android.R.color.white)
+                .setNoConfirmButton()
+                .setTitle("Simple message")
+                .setSimpleMessage("This is a simple message!");
+
+        FSDialog dialog = builder.build();
+        dialog.show();
     }
 }

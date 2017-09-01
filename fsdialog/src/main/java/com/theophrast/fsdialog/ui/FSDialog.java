@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,12 +28,19 @@ public class FSDialog {
     private boolean autoDismiss;
     private boolean contentScrollable;
 
+    //colors
     private int titleStringColor;
+    private int messageStringColor;
     private int backgroundColor;
     private int titleBackgroundColor;
 
+    //contents
     private String title;
     private String confirmString;
+    private String dialogMessage;
+
+    private boolean titleEnabled;
+    private boolean confirmButtonEnabled;
 
     private int layoutResource;
 
@@ -45,13 +53,17 @@ public class FSDialog {
     private FSDialog(FsDialogBuilder builder) {
         this.mContext = builder.mContext;
         this.titleStringColor = builder.titleStringColor;
+        this.messageStringColor = builder.messageStringColor;
         this.backgroundColor = builder.backgroundColor;
         this.titleBackgroundColor = builder.titleBackgroundColor;
         this.title = builder.title;
         this.confirmString = builder.confirmString;
         this.layoutResource = builder.layoutResource;
         this.autoDismiss = builder.autoDismiss;
-        this.contentScrollable=builder.contentScrollable;
+        this.contentScrollable = builder.contentScrollable;
+        this.titleEnabled = builder.titleEnabled;
+        this.confirmButtonEnabled = builder.confirmButtonEnabled;
+        this.dialogMessage = builder.dialogMessage;
     }
 
     public void setDiscardListener(FSDialogButtonClickListener discardListener) {
@@ -67,20 +79,20 @@ public class FSDialog {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View thDialogBase;
-        if(contentScrollable) {
+        if (contentScrollable) {
             thDialogBase = inflater.inflate(com.theophrast.fsdialog.R.layout.fsdialog_base_scrollable, null);
-        }else{
+        } else {
             thDialogBase = inflater.inflate(com.theophrast.fsdialog.R.layout.fsdialog_base, null);
         }
-        ViewGroup container = (ViewGroup) thDialogBase.findViewById(R.id.container);
-        contentView = inflater.inflate(layoutResource, container);
 
         setupBaseDialog(thDialogBase);
+        setupDialogContent(thDialogBase);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setView(thDialogBase);
         mDialog = builder.show();
     }
+
 
     public void dismiss() {
         if (mDialog != null && mDialog.isShowing()) {
@@ -90,6 +102,23 @@ public class FSDialog {
 
     public View getContentView() {
         return contentView;
+    }
+
+
+    private void setupDialogContent(View baseView) {
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        ViewGroup container = (ViewGroup) baseView.findViewById(R.id.container);
+
+        if (dialogMessage == null) {
+            contentView = inflater.inflate(layoutResource, container);
+        } else {
+            contentView = inflater.inflate(R.layout.fsdialog_content_simplemessage, container);
+            TextView tv_message = (TextView) contentView.findViewById(R.id.tv_message);
+            tv_message.setText(dialogMessage);
+            tv_message.setTextColor(messageStringColor);
+        }
     }
 
 
@@ -112,7 +141,9 @@ public class FSDialog {
 
         //setup the string values
         tv_title.setText(title);
+        tv_title.setVisibility(titleEnabled ? View.VISIBLE : View.INVISIBLE);
         bt_confirm.setText(confirmString);
+        bt_confirm.setVisibility(confirmButtonEnabled ? View.VISIBLE : View.INVISIBLE);
 
 
         //setup the listeners
@@ -139,16 +170,21 @@ public class FSDialog {
         private Context mContext;
 
         private int titleStringColor = Color.parseColor("#F6F6F6");
+        private int messageStringColor = Color.parseColor("#757575");
         private int backgroundColor = Color.parseColor("#F0F0F0");
         private int titleBackgroundColor = Color.parseColor("#303F9F");
 
         private String title = "Title";
         private String confirmString = "Ok";
+        private String dialogMessage = null;
 
         private int layoutResource = R.layout.fsdialog_content_base;
 
         private boolean autoDismiss = true;
-        private boolean contentScrollable=true;
+        private boolean contentScrollable = true;
+
+        private boolean titleEnabled = true;
+        private boolean confirmButtonEnabled = true;
 
 
         public FsDialogBuilder(Context mContext) {
@@ -172,6 +208,16 @@ public class FSDialog {
 
         public FsDialogBuilder setTitleStringColorRes(@ColorRes int titleStringColorRes) {
             this.titleStringColor = ContextCompat.getColor(mContext, titleStringColorRes);
+            return this;
+        }
+
+        public FsDialogBuilder setMessageStringColor(@ColorInt int messageStringColor) {
+            this.messageStringColor = messageStringColor;
+            return this;
+        }
+
+        public FsDialogBuilder setMessageStringColorRes(@ColorRes int messageStringColorRes) {
+            this.messageStringColor = ContextCompat.getColor(mContext, messageStringColorRes);
             return this;
         }
 
@@ -200,8 +246,28 @@ public class FSDialog {
             return this;
         }
 
+        public FsDialogBuilder setTitleRes(@StringRes int titleRes) {
+            this.title = mContext.getString(titleRes);
+            return this;
+        }
+
         public FsDialogBuilder setConfirmString(String confirmString) {
             this.confirmString = confirmString;
+            return this;
+        }
+
+        public FsDialogBuilder setConfirmStringRes(@StringRes int confirmStringRes) {
+            this.confirmString = mContext.getString(confirmStringRes);
+            return this;
+        }
+
+        public FsDialogBuilder setSimpleMessage(String dialogMessage) {
+            this.dialogMessage = dialogMessage;
+            return this;
+        }
+
+        public FsDialogBuilder setSimpleMessageRes(@StringRes int dialogMessageRes) {
+            this.dialogMessage = mContext.getString(dialogMessageRes);
             return this;
         }
 
@@ -210,6 +276,15 @@ public class FSDialog {
             return this;
         }
 
+        public FsDialogBuilder setNoTitle() {
+            this.titleEnabled = false;
+            return this;
+        }
+
+        public FsDialogBuilder setNoConfirmButton() {
+            this.confirmButtonEnabled = false;
+            return this;
+        }
 
         public FSDialog build() {
             return new FSDialog(this);
