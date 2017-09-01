@@ -1,19 +1,18 @@
-
+![logo](https://github.com/Theophrast/FSDialog/blob/master/gfx/logo/fsdialog_logo_256.png)
 # FSDialog (Fullscreen Styled Dialog)
 [![](https://jitpack.io/v/Theophrast/FSDialog.svg)](https://jitpack.io/#Theophrast/FSDialog)
-
-![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/logo/fsdialog_logo_256.png)
 
 ## Description
 Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specified in Google Material Design.
 
-## Requirements
-The Library requires **Android SDK version 25**.
 
-
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo.png)
 ![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_01.png)
 ![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_03.png)
 ![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/img_demo_02.png)
+
+## Requirements
+The Library requires **Android SDK version 25**.
 
 ----------
 
