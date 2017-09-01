@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.theophrast.fsdialog.callbacks.FSDialogButtonClickListener;
@@ -16,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button bt_showSimpleDialog = (Button) findViewById(R.id.bt_dialog_simple);
-        bt_showSimpleDialog.setOnClickListener(new View.OnClickListener() {
+        Button bt_showCustomLayoutDialog = (Button) findViewById(R.id.bt_dialog_custom);
+        bt_showCustomLayoutDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showSimpleDialog();
+                showCustomLayoutDialog();
             }
         });
 
@@ -42,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showSimpleDialog() {
+    private void showCustomLayoutDialog() {
         FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
                 .setTitleStringColorRes(android.R.color.white)
                 .setTitleBackgroundColorRes(R.color.color_red)
                 .setBackgroundColorRes(android.R.color.white)
-                .setNoTitle()
+                .setTitle("Settings dialog")
                 .setConfirmString("Ok")
                 .setAutoDismiss(true)
                 .setLayoutResource(R.layout.dialog_content);
@@ -57,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
         dialog.setConfirmListener(new FSDialogButtonClickListener() {
             @Override
             public void OnButtonClick() {
-                Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_SHORT).show();
             }
         });
         dialog.setDiscardListener(new FSDialogButtonClickListener() {
             @Override
             public void OnButtonClick() {
-                Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -75,21 +76,37 @@ public class MainActivity extends AppCompatActivity {
                 .setBackgroundColorRes(android.R.color.white)
                 .setTitle("Text input")
                 .setConfirmString("Save")
+                .setAutoDismiss(false)
                 .setLayoutResource(R.layout.dialog_content_input);
 
-        FSDialog dialog = builder.build();
+        final FSDialog dialog = builder.build();
         dialog.show();
+
+        View contentView = dialog.getContentView();
+        final EditText et_input = (EditText) contentView.findViewById(R.id.et_input);
+
 
         dialog.setConfirmListener(new FSDialogButtonClickListener() {
             @Override
             public void OnButtonClick() {
-                Toast.makeText(MainActivity.this, "Confirm clicked", Toast.LENGTH_LONG).show();
+                if (et_input.getText().toString().isEmpty()) {
+                    et_input.setError("Empty field");
+                    return;
+                } else {
+                    String toastMessage = "Text from input field:\n" + et_input.getText().toString();
+                    Toast.makeText(MainActivity.this,
+                            toastMessage,
+                            Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+
+
             }
         });
         dialog.setDiscardListener(new FSDialogButtonClickListener() {
             @Override
             public void OnButtonClick() {
-                Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
         });
     }

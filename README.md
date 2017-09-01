@@ -2,6 +2,8 @@
 # FSDialog (Fullscreen Styled Dialog)
 [![](https://jitpack.io/v/Theophrast/FSDialog.svg)](https://jitpack.io/#Theophrast/FSDialog)
 
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/logo/fsdialog_logo_256.png)
+
 ## Description
 Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specified in Google Material Design.
 
@@ -9,8 +11,8 @@ Simple wrapper library for Android Dialog, looks like Fullscreen Dialog specifie
 The Library requires **Android SDK version 25**.
 
 
-![demo1](https://github.com/Theophrast/FSDialog/blob/master/screenshots/demo1.png)
-![demo1](https://github.com/Theophrast/FSDialog/blob/master/screenshots/demo2.png)
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/demo1.png)
+![demo1](https://github.com/Theophrast/FSDialog/blob/master/gfx/screenshots/demo2.png)
 
 ----------
 
@@ -30,6 +32,22 @@ The Library requires **Android SDK version 25**.
     dialog.show();
 ```
 Check the sample for more details.
+
+### Show a simple message
+For a simple message dialog:
+
+```java
+	 FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
+                .setTitleStringColorRes(android.R.color.white)
+                .setTitleBackgroundColorRes(R.color.color_green)
+                .setBackgroundColorRes(android.R.color.white)
+                .setNoConfirmButton()
+                .setTitle("Simple message")
+                .setSimpleMessage("This is a simple message!");
+
+        FSDialog dialog = builder.build();
+        dialog.show();
+```
 
 ### Set your Layout for FSDialog
 Create your own layout resource file for dialog content.
