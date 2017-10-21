@@ -26,7 +26,7 @@ The Library requires **Android SDK version 25**.
             .setBackgroundColorRes(android.R.color.white)
             .setTitle("Title")
             .setConfirmString("Save")
-            .setLayoutResource(R.layout.my_dialog_content.xml);
+            .setLayoutResource(R.layout.my_dialog_content);
 
     FSDialog dialog = builder.build();
     dialog.show();
@@ -74,7 +74,7 @@ Set your own content:
 ```java
  FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
             ...
-            .setLayoutResource(R.layout.my_dialog_content.xml);
+            .setLayoutResource(R.layout.my_dialog_content);
 
     FSDialog dialog = builder.build();
     dialog.show();
@@ -112,10 +112,11 @@ Set listeners for discard and confirm button:
     });
 ```
 
-Without title or confirm button:
+Without title, titlebar or confirm button:
 ```java
-	 .setNoConfirmButton()
-     .setNoTitle()
+	.setNoTitle()
+    .setNoTitleBar()
+	.setNoConfirmButton()
 ```
 
 
@@ -134,7 +135,7 @@ In your project level's **build.gradle**:
 ```groovy
 dependencies {
 	...
-	compile 'com.github.Theophrast:FSDialog:1.3.0'
+	compile 'com.github.Theophrast:FSDialog:1.3.1'
 }
 ```
 
