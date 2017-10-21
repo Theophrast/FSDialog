@@ -39,6 +39,7 @@ public class FSDialog {
     private String confirmString;
     private String dialogMessage;
 
+    private boolean titleBarEnabled;
     private boolean titleEnabled;
     private boolean confirmButtonEnabled;
 
@@ -64,6 +65,7 @@ public class FSDialog {
         this.titleEnabled = builder.titleEnabled;
         this.confirmButtonEnabled = builder.confirmButtonEnabled;
         this.dialogMessage = builder.dialogMessage;
+        this.titleBarEnabled = builder.titleBarEnabled;
     }
 
     public void setDiscardListener(FSDialogButtonClickListener discardListener) {
@@ -144,6 +146,7 @@ public class FSDialog {
         tv_title.setVisibility(titleEnabled ? View.VISIBLE : View.INVISIBLE);
         bt_confirm.setText(confirmString);
         bt_confirm.setVisibility(confirmButtonEnabled ? View.VISIBLE : View.INVISIBLE);
+        titlebar.setVisibility(titleBarEnabled ? View.VISIBLE : View.GONE);
 
 
         //setup the listeners
@@ -183,6 +186,7 @@ public class FSDialog {
         private boolean autoDismiss = true;
         private boolean contentScrollable = true;
 
+        private boolean titleBarEnabled = true;
         private boolean titleEnabled = true;
         private boolean confirmButtonEnabled = true;
 
@@ -278,6 +282,11 @@ public class FSDialog {
 
         public FsDialogBuilder setNoTitle() {
             this.titleEnabled = false;
+            return this;
+        }
+
+        public FsDialogBuilder setNoTitleBar() {
+            this.titleBarEnabled = false;
             return this;
         }
 

@@ -1,7 +1,7 @@
 package com.theophrast.fullscreenstyledialog;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
                 showNoConfirmButtonDialog();
             }
         });
+
+        Button bt_show_no_titlebar = (Button) findViewById(R.id.bt_dialog_notitlebar);
+        bt_show_no_titlebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showNoTitleBarDialog();
+            }
+        });
     }
 
 
@@ -65,6 +73,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void OnButtonClick() {
                 Toast.makeText(MainActivity.this, "Discard clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showNoTitleBarDialog() {
+        FSDialog.FsDialogBuilder builder = new FSDialog.FsDialogBuilder(this)
+                .setNoTitleBar()
+                .setAutoDismiss(true)
+                .setLayoutResource(R.layout.dialog_content_notitlebar);
+
+        final FSDialog dialog = builder.build();
+        dialog.show();
+
+        Button bt_got_it = (Button) (dialog.getContentView()).findViewById(R.id.bt_got_it);
+        bt_got_it.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
     }
