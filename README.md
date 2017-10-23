@@ -90,6 +90,14 @@ Automatically dismiss the dialog on discard or confirm event (default true):
 ```java
 	.setAutoDismiss(true);
 ```
+Use as a modal dialog:
+```java
+	.setCancelable(false);
+```
+Close the keyboard automatically on dismiss event (defult true):
+```java
+	.autoHideKeyboardOnDismiss(true);
+```
 
 Set listeners for discard and confirm button:
 ```java
@@ -135,7 +143,7 @@ In your project level's **build.gradle**:
 ```groovy
 dependencies {
 	...
-	compile 'com.github.Theophrast:FSDialog:1.3.1'
+	compile 'com.github.Theophrast:FSDialog:1.3.2'
 }
 ```
 
