@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 .setTitle("Text input")
                 .setConfirmString("Save")
                 .setAutoDismiss(false)
+                .setCancelable(false)
+                .setAutoHideKeyboardOnDismiss(true)
                 .setLayoutResource(R.layout.dialog_content_input);
 
         final FSDialog dialog = builder.build();

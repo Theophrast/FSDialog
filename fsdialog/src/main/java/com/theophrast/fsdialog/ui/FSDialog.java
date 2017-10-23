@@ -1,7 +1,9 @@
 package com.theophrast.fsdialog.ui;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
@@ -11,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -26,6 +29,8 @@ public class FSDialog {
     private Context mContext;
 
     private boolean autoDismiss;
+    private boolean cancelable;
+    private boolean autoHideKeyboardOnDismiss;
     private boolean contentScrollable;
 
     //colors
@@ -61,6 +66,8 @@ public class FSDialog {
         this.confirmString = builder.confirmString;
         this.layoutResource = builder.layoutResource;
         this.autoDismiss = builder.autoDismiss;
+        this.cancelable = builder.cancelable;
+        this.autoHideKeyboardOnDismiss = builder.autoHideKeyboardOnDismiss;
         this.contentScrollable = builder.contentScrollable;
         this.titleEnabled = builder.titleEnabled;
         this.confirmButtonEnabled = builder.confirmButtonEnabled;
@@ -93,6 +100,18 @@ public class FSDialog {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setView(thDialogBase);
         mDialog = builder.show();
+
+        mDialog.setCancelable(cancelable);
+        mDialog.setCanceledOnTouchOutside(cancelable);
+
+        if (autoHideKeyboardOnDismiss) {
+            mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    hideKeyboard();
+                }
+            });
+        }
     }
 
 
@@ -101,6 +120,17 @@ public class FSDialog {
             mDialog.dismiss();
         }
     }
+
+    private void hideKeyboard() {
+        if (contentView == null) return;
+        try {
+            InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(contentView.getWindowToken(), 0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public View getContentView() {
         return contentView;
@@ -184,6 +214,8 @@ public class FSDialog {
         private int layoutResource = R.layout.fsdialog_content_base;
 
         private boolean autoDismiss = true;
+        private boolean cancelable = true;
+        private boolean autoHideKeyboardOnDismiss = true;
         private boolean contentScrollable = true;
 
         private boolean titleBarEnabled = true;
@@ -197,6 +229,16 @@ public class FSDialog {
 
         public FsDialogBuilder setAutoDismiss(boolean autoDismiss) {
             this.autoDismiss = autoDismiss;
+            return this;
+        }
+
+        public FsDialogBuilder setCancelable(boolean cancelable) {
+            this.cancelable = cancelable;
+            return this;
+        }
+
+        public FsDialogBuilder setAutoHideKeyboardOnDismiss(boolean autoHideKeyboard) {
+            this.autoHideKeyboardOnDismiss = autoHideKeyboard;
             return this;
         }
 
