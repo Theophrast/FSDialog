@@ -143,7 +143,7 @@ In your project level's **build.gradle**:
 ```groovy
 dependencies {
 	...
-	compile 'com.github.Theophrast:FSDialog:1.3.2'
+	compile 'com.github.Theophrast:FSDialog:1.3.3'
 }
 ```
 
